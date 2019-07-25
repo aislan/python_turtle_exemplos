@@ -1,3 +1,6 @@
+'''
+posicione a escalação do seu time de futebol 
+'''
 from turtle import * 
 
 def desenha_campo():
@@ -110,6 +113,6 @@ desenha_campo()
 desenha_jogador("blue",-0,-194,"Goleriro") 
 desenha_jogador("yellow",-50,-120,"Zagueiro") 
 desenha_jogador("yellow",50,-120,"Zagueiro") 
-#forma e escalação de todo o timme
+#forme e escalação de todo o timme
 
 done()
