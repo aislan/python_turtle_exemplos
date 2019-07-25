@@ -110,7 +110,7 @@ def desenha_jogador(cor,x,y,nome_jogador):
 #Programa principal começa aqui
 desenha_campo()
 
-desenha_jogador("blue",-0,-194,"Goleriro") 
+desenha_jogador("blue",0,-194,"Goleiro") 
 desenha_jogador("yellow",-50,-120,"Zagueiro") 
 desenha_jogador("yellow",50,-120,"Zagueiro") 
 #forme e escalação de todo o timme
