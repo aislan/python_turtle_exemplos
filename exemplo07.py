@@ -1,3 +1,6 @@
+'''
+Demonstrado a função undo(), ela dezfaz a última ação executada
+'''
 from turtle import *
 
 for i in range(10):

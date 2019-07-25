@@ -1,6 +1,6 @@
 '''
 Uma segunda demonstração de fd() e left() agora utlizando 
-o laço de repetição for
+o laço de repetição for e construindo uma esprial
 '''
 from turtle import *
 
