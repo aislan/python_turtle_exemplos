@@ -1,6 +1,7 @@
 '''
 Demonstração dos comandos forward() / fd() e left()
-o primeiro serve par movimentar a tartuga pra frente e o segundo girar a tartaruga
+o primeiro serve par movimentar a tartuga pra frente e o 
+segundo girar a tartaruga
 em um determinado ângulo para a esquerda
 '''
 from turtle import *

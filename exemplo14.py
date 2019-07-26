@@ -1,5 +1,6 @@
 '''
-Exemplo de interação com a tela com uso do teclado
+Exemplo de interação com a tela 
+com uso do teclado
 '''
 from turtle import *
 
@@ -18,6 +19,7 @@ def left():
 def right():
     setheading(0)
     forward(100)
+    
 #o listen ativa o modo 'escuta' para levar em consideração os comandos 
 listen()
 #onkey dispara uma função depois de digitado uma determinada tela
