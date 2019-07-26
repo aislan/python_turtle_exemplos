@@ -2,14 +2,17 @@
 from turtle import *
 from math import *
 from random import *
+import os
 
 #carregando a tela principal
 Screen()
-bgcolor('lightgreen')
+bgcolor("black")
+bgpic("fundo.png")
 tracer(3)
 
 #desenhando os limites/bordas do jogo
 arena = Turtle()
+arena.color("white")
 arena.penup()
 arena.setposition(-300,-300)
 arena.pendown()
@@ -75,12 +78,11 @@ while True:
     #verificação de limite/borda jogador
     if jogador.xcor() > 300 or jogador.xcor() < -300:
         jogador.right(100)
-    
+        os.system("bateu.mp3&")
     if jogador.ycor() > 300 or jogador.ycor() < -300:
         jogador.right(100)
+        os.system("bateu.mp3&")
 
-   
-    
     #movendo as píluas
     for i in range(max_pilulas):
         pilulas[i].fd(3)
@@ -88,9 +90,11 @@ while True:
         #verificação de limite/borda pilula
         if pilulas[i].xcor() > 290 or pilulas[i].xcor() < -290:
             pilulas[i].right(100)
+            os.system("bateu.mp3&")
         
         if pilulas[i].ycor() > 290 or pilulas[i].ycor() < -290:
             pilulas[i].right(100)
+            os.system("bateu.mp3&")
 
          #verificar colisão
         if bateu(jogador,pilulas[i]):
