@@ -29,6 +29,9 @@ jogador.shape('triangle')
 jogador.penup()
 jogador.speed(0)
 
+#pontuação 
+score = 0
+
 #velocidade
 velocidade = 1
 
@@ -100,5 +103,13 @@ while True:
         if bateu(jogador,pilulas[i]):
             pilulas[i].setposition(randint(-300,300),randint(-300,300))
             pilulas[i].right(randint(0,360))
+            score += 1
+            #mostrar o score na tela
+            arena.undo()
+            arena.penup()
+            arena.hideturtle()
+            arena.setposition(-290,310)
+            texto_score = "Score: {}".format(score)
+            arena.write(texto_score,font=("Arial",14))
 
 done()
