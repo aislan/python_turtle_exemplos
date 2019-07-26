@@ -39,6 +39,14 @@ def aumenta_velocidade():
     global velocidade
     velocidade += 1
 
+def bateu(objeto1, objeto2):
+    distancia = sqrt(pow(objeto1.xcor()-objeto2.xcor(),2)+pow(objeto1.ycor()-objeto2.ycor(),2))
+    if distancia < 20:
+        return True
+    else:
+        return False
+
+
 #comandos do jogo
 listen()
 onkey(vira_a_esquerda,"Left")
@@ -66,8 +74,8 @@ while True:
         jogador.right(100)
 
     #verificar colisão
-    distancia = sqrt(pow(jogador.xcor()-pilula.xcor(),2)+pow(jogador.ycor()-pilula.ycor(),2))
-    if distancia<20:
+    
+    if bateu(jogador,pilula):
         pilula.setposition(randint(-300,300),randint(-300,300))
 
 done()
