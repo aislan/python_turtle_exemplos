@@ -1,5 +1,7 @@
 #exemplo de jogo
 from turtle import *
+from math import *
+from random import *
 
 #carregando a tela principal
 Screen()
@@ -43,6 +45,15 @@ onkey(vira_a_esquerda,"Left")
 onkey(vira_a_direita,"Right")
 onkey(aumenta_velocidade,"Up")
 
+#pilulas de energia 
+pilula = Turtle()
+pilula.color("red")
+pilula.shape("circle")
+pilula.penup()
+pilula.speed(0)
+pilula.setposition(randint(-300,300),randint(-300,300))
+
+
 #principal
 while True:
     jogador.forward(velocidade)
@@ -53,5 +64,10 @@ while True:
     
     if jogador.ycor() > 300 or jogador.ycor() < -300:
         jogador.right(100)
+
+    #verificar colisão
+    distancia = sqrt(pow(jogador.xcor()-pilula.xcor(),2)+pow(jogador.ycor()-pilula.ycor(),2))
+    if distancia<20:
+        pilula.setposition(randint(-300,300),randint(-300,300))
 
 done()
