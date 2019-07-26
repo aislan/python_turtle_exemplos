@@ -5,6 +5,17 @@ from turtle import *
 Screen()
 bgcolor('lightgreen')
 
+#desenhando os limites/bordas do jogo
+arena = Turtle()
+arena.penup()
+arena.setposition(-300,-300)
+arena.pendown()
+arena.pensize(3)
+for lado in range(4):
+    arena.fd(600)
+    arena.left(90)
+arena.hideturtle()
+
 #criando o jogador
 jogador = Turtle()
 jogador.color('blue')
@@ -35,5 +46,12 @@ onkey(aumenta_velocidade,"Up")
 #principal
 while True:
     jogador.forward(velocidade)
+
+    #verificação de limite/borda
+    if jogador.xcor() > 300 or jogador.xcor() < -300:
+        jogador.right(100)
+    
+    if jogador.ycor() > 300 or jogador.ycor() < -300:
+        jogador.right(100)
 
 done()
