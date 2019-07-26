@@ -3,7 +3,7 @@ Girando o cursor para um "ângulo fixo" com o comando setheading(a)
 '''
 from turtle import *
 
-speed(0)
+#speed(0.1)
 
 for angulo in range(0, 360, 15):
     setheading(angulo)
