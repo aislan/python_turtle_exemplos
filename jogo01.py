@@ -6,6 +6,7 @@ from random import *
 #carregando a tela principal
 Screen()
 bgcolor('lightgreen')
+tracer(3)
 
 #desenhando os limites/bordas do jogo
 arena = Turtle()
@@ -53,13 +54,18 @@ onkey(vira_a_esquerda,"Left")
 onkey(vira_a_direita,"Right")
 onkey(aumenta_velocidade,"Up")
 
+#criando pilulas
+max_pilulas = 6
+pilulas = []
+
 #pilulas de energia 
-pilula = Turtle()
-pilula.color("red")
-pilula.shape("circle")
-pilula.penup()
-pilula.speed(0)
-pilula.setposition(randint(-300,300),randint(-300,300))
+for i in range(max_pilulas):
+    pilulas.append(Turtle())
+    pilulas[i].color("red")
+    pilulas[i].shape("circle")
+    pilulas[i].penup()
+    pilulas[i].speed(0)
+    pilulas[i].setposition(randint(-300,300),randint(-300,300))
 
 
 #principal
@@ -73,20 +79,22 @@ while True:
     if jogador.ycor() > 300 or jogador.ycor() < -300:
         jogador.right(100)
 
-    #verificar colisão
-    
-    if bateu(jogador,pilula):
-        pilula.setposition(randint(-300,300),randint(-300,300))
-        pilula.right(randint(0,360))
+   
     
     #movendo as píluas
-    pilula.fd(3)
+    for i in range(max_pilulas):
+        pilulas[i].fd(3)
 
-    #verificação de limite/borda pilula
-    if pilula.xcor() > 290 or pilula.xcor() < -290:
-        pilula.right(100)
-    
-    if pilula.ycor() > 290 or pilula.ycor() < -290:
-        pilula.right(100)
+        #verificação de limite/borda pilula
+        if pilulas[i].xcor() > 290 or pilulas[i].xcor() < -290:
+            pilulas[i].right(100)
+        
+        if pilulas[i].ycor() > 290 or pilulas[i].ycor() < -290:
+            pilulas[i].right(100)
+
+         #verificar colisão
+        if bateu(jogador,pilulas[i]):
+            pilulas[i].setposition(randint(-300,300),randint(-300,300))
+            pilulas[i].right(randint(0,360))
 
 done()
