@@ -66,7 +66,7 @@ pilula.setposition(randint(-300,300),randint(-300,300))
 while True:
     jogador.forward(velocidade)
 
-    #verificação de limite/borda
+    #verificação de limite/borda jogador
     if jogador.xcor() > 300 or jogador.xcor() < -300:
         jogador.right(100)
     
@@ -77,5 +77,16 @@ while True:
     
     if bateu(jogador,pilula):
         pilula.setposition(randint(-300,300),randint(-300,300))
+        pilula.right(randint(0,360))
+    
+    #movendo as píluas
+    pilula.fd(3)
+
+    #verificação de limite/borda pilula
+    if pilula.xcor() > 290 or pilula.xcor() < -290:
+        pilula.right(100)
+    
+    if pilula.ycor() > 290 or pilula.ycor() < -290:
+        pilula.right(100)
 
 done()
