@@ -32,6 +32,34 @@ bola.color("white")
 bola.penup()
 bola.goto(0,0)
 
+#funções
+def jogador_a_sobe():
+    y = jogador_a.ycor()
+    y += 20
+    jogador_a.sety(y)
+
+def jogador_a_desce():
+    y = jogador_a.ycor()
+    y -= 20
+    jogador_a.sety(y)
+
+def jogador_b_sobe():
+    y = jogador_b.ycor()
+    y += 20
+    jogador_b.sety(y)
+
+def jogador_b_desce():
+    y = jogador_b.ycor()
+    y -= 20
+    jogador_b.sety(y)
+
+#comandos teclado
+tela.listen()
+tela.onkeypress(jogador_a_sobe,"w")
+tela.onkeypress(jogador_a_desce,"s")
+tela.onkeypress(jogador_b_sobe,"Up")
+tela.onkeypress(jogador_b_desce,"Down")
+
 #parte principal do jogo
 while True:
     tela.update()
