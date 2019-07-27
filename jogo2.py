@@ -26,11 +26,13 @@ jogador_b.goto(350,0)
 
 #bola
 bola = Turtle()
-bola.speed(0)
 bola.shape("circle")
+bola.speed(0)
 bola.color("white")
 bola.penup()
 bola.goto(0,0)
+bola.dx = 2
+bola.dy = -2
 
 #funções
 def jogador_a_sobe():
@@ -63,3 +65,24 @@ tela.onkeypress(jogador_b_desce,"Down")
 #parte principal do jogo
 while True:
     tela.update()
+
+    #movimentando a bola 
+    bola.setx(bola.xcor() + bola.dx)
+    bola.sety(bola.ycor() + bola.dy)
+
+    # verificando as bordas 
+    if bola.ycor() > 290:
+        bola.sety(290)
+        bola.dy *= -1
+
+    if bola.ycor() < -290:
+        bola.sety(-290)
+        bola.dy *= -1
+    
+    if bola.xcor() > 390:
+        bola.goto(0,0)
+        bola.dx *= -1
+
+    if bola.xcor() < -390:
+        bola.goto(0,0)
+        bola.dx *= -1
