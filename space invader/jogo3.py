@@ -27,8 +27,19 @@ jogador.speed(0)
 jogador.goto(0,-250)
 jogador.setheading(90)
 
+#inimigos
+inimigo = Turtle()
+inimigo.color("red")
+inimigo.shape("circle")
+inimigo.penup()
+inimigo.speed(0)
+inimigo.goto(-200,250)
+
 #velocidade do jogador
 velocidade_jogador = 15
+
+#velocidade do inimígo 
+velocidade_inimigo = 2
 
 #funções
 def vai_para_esquerda():
@@ -50,5 +61,25 @@ listen()
 onkey(vai_para_esquerda,"Left")
 onkey(vai_para_direita,"Right")
 
+#principal 
+while True:
+
+    #movendo o inimigo
+    x = inimigo.xcor()
+    x += velocidade_inimigo
+    inimigo.setx(x)
+
+    #limitando os movimentos do inimigo 
+    if inimigo.xcor() > 280:
+        y = inimigo.ycor()
+        y -= 40
+        velocidade_inimigo *= -1
+        inimigo.sety(y)
+    
+    if inimigo.xcor() < -280:
+        y = inimigo.ycor()
+        y -= 40
+        velocidade_inimigo *= -1
+        inimigo.sety(y)
 
 done()
