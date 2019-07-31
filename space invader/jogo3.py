@@ -27,5 +27,28 @@ jogador.speed(0)
 jogador.goto(0,-250)
 jogador.setheading(90)
 
+#velocidade do jogador
+velocidade_jogador = 15
+
+#funções
+def vai_para_esquerda():
+    x = jogador.xcor()
+    x -= velocidade_jogador
+    if x < - 280:
+        x = -280
+    jogador.setx(x)
+
+def vai_para_direita():
+    x = jogador.xcor()
+    x += velocidade_jogador
+    if x > 280:
+        x = 280
+    jogador.setx(x)
+
+#comandos do jogador
+listen()
+onkey(vai_para_esquerda,"Left")
+onkey(vai_para_direita,"Right")
+
 
 done()
