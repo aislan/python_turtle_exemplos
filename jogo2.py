@@ -86,3 +86,13 @@ while True:
     if bola.xcor() < -390:
         bola.goto(0,0)
         bola.dx *= -1
+
+    #colisão da bola com os jogadores
+
+    if (bola.xcor() > 340 and bola.xcor() < 350) and (bola.ycor() < jogador_b.ycor()+ 40 and bola.ycor()>jogador_b.ycor() - 40):
+        bola.setx(340)
+        bola.dx *=-1
+
+    if (bola.xcor() < -340 and bola.xcor() > -350) and (bola.ycor() < jogador_a.ycor()+ 40 and bola.ycor()>jogador_a.ycor() - 40):
+        bola.setx(-340)
+        bola.dx *=-1
