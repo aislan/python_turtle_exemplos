@@ -6,6 +6,10 @@ tela.bgcolor("black")
 tela.setup(width=800, height=600)
 tela.tracer(0)
 
+#score
+score_a = 0
+score_b = 0
+
 # jogador a
 jogador_a = Turtle()
 jogador_a.speed(0)
@@ -33,6 +37,15 @@ bola.penup()
 bola.goto(0,0)
 bola.dx = 2
 bola.dy = -2
+
+#placar
+placar = Turtle()
+placar.speed(0)
+placar.color("white")
+placar.penup()
+placar.hideturtle()
+placar.goto(0,260)
+placar.write("Jogador A: 0   Jogador B: 0", align="center", font=("Arial",24))
 
 #funções
 def jogador_a_sobe():
@@ -74,10 +87,17 @@ while True:
     if bola.ycor() > 290:
         bola.sety(290)
         bola.dy *= -1
+        score_a += 1
+        placar.clear()
+        placar.write("Jogador A: {}   Jogador B: {}".format(score_a,score_b), align="center", font=("Arial",24))
+
 
     if bola.ycor() < -290:
         bola.sety(-290)
         bola.dy *= -1
+        score_b += 1
+        placar.clear()
+        placar.write("Jogador A: {}   Jogador B: {}".format(score_a,score_b), align="center", font=("Arial",24))
     
     if bola.xcor() > 390:
         bola.goto(0,0)
