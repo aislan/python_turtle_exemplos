@@ -35,11 +35,29 @@ inimigo.penup()
 inimigo.speed(0)
 inimigo.goto(-200,250)
 
+#tiro
+tiro = Turtle()
+tiro.color("yellow")
+tiro.shape("triangle")
+tiro.penup()
+tiro.speed(0)
+tiro.setheading(90)
+tiro.shapesize(0.5,0.5)
+tiro.hideturtle()
+
 #velocidade do jogador
 velocidade_jogador = 15
 
 #velocidade do inimígo 
 velocidade_inimigo = 2
+
+#velocidade do tiro
+velocidade_do_tiro = 20
+
+#estado do tiro
+#pronto | fogo
+estado_do_tiro = "pronto"
+
 
 #funções
 def vai_para_esquerda():
@@ -56,10 +74,23 @@ def vai_para_direita():
         x = 280
     jogador.setx(x)
 
+def dispara_tiro():
+    #declarar a variável estado_do_tiro como global
+    global estado_do_tiro
+    if estado_do_tiro == "pronto":
+        estado_do_tiro = "fogo"
+        print(estado_do_tiro)
+        #movimentando o tiro
+        x = jogador.xcor()
+        y = jogador.ycor() + 10
+        tiro.goto(x,y)
+        tiro.showturtle()
+
 #comandos do jogador
 listen()
 onkey(vai_para_esquerda,"Left")
 onkey(vai_para_direita,"Right")
+onkey(dispara_tiro,"space")
 
 #principal 
 while True:
@@ -81,5 +112,17 @@ while True:
         y -= 40
         velocidade_inimigo *= -1
         inimigo.sety(y)
+    
+    #disparo
+    if estado_do_tiro == "fogo":
+        y = tiro.ycor()
+        y += velocidade_do_tiro
+        tiro.sety(y)
+
+    #verifica se o disparo atingiu o topo
+    if tiro.ycor() > 275:
+        estado_do_tiro = "pronto"
+        tiro.hideturtle()
+        print('topo ' + estado_do_tiro)
 
 done()
