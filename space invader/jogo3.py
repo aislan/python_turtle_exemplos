@@ -1,4 +1,5 @@
 from turtle import *
+from math import *
 
 #configurando a tela
 tela = Screen()
@@ -79,12 +80,18 @@ def dispara_tiro():
     global estado_do_tiro
     if estado_do_tiro == "pronto":
         estado_do_tiro = "fogo"
-        print(estado_do_tiro)
         #movimentando o tiro
         x = jogador.xcor()
         y = jogador.ycor() + 10
         tiro.goto(x,y)
         tiro.showturtle()
+
+def bateu(objeto1, objeto2):
+    distancia = sqrt(pow(objeto1.xcor()-objeto2.xcor(),2)+pow(objeto1.ycor()-objeto2.ycor(),2))
+    if distancia < 20:
+        return True
+    else:
+        return False
 
 #comandos do jogador
 listen()
@@ -123,6 +130,20 @@ while True:
     if tiro.ycor() > 275:
         estado_do_tiro = "pronto"
         tiro.hideturtle()
-        print('topo ' + estado_do_tiro)
+    
+    #verifica se o disparo atingiu o inimigo
+    if bateu(tiro,inimigo):
+        #reseta o tiro
+        tiro.hideturtle()
+        estado_do_tiro = "pronto"
+        tiro.goto(0,-400)
+        #reseta o inimigo
+        inimigo.goto(-200,250)
+    
+    #verifica se o inimigo atingiu o jogador
+    if bateu(jogador,inimigo):
+        jogador.hideturtle()
+        inimigo.hideturtle()
+        print("Perdeu!")
 
 done()
