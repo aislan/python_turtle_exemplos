@@ -1,5 +1,6 @@
 from turtle import *
 from math import *
+from random import *
 
 #configurando a tela
 tela = Screen()
@@ -28,13 +29,23 @@ jogador.speed(0)
 jogador.goto(0,-250)
 jogador.setheading(90)
 
-#inimigos
-inimigo = Turtle()
-inimigo.color("red")
-inimigo.shape("circle")
-inimigo.penup()
-inimigo.speed(0)
-inimigo.goto(-200,250)
+#escolha o número de inimigos
+numero_de_inimigos = 5
+#criando uma lista vazia de inimigos
+inimigos = []
+#adicionando os inimigoa para a lista
+for i in range(numero_de_inimigos):
+    inimigos.append(Turtle())    
+
+for inimigo in inimigos:
+    #inimigos
+    inimigo.color("red")
+    inimigo.shape("circle")
+    inimigo.penup()
+    inimigo.speed(0)
+    x = randint(-200,200)
+    y = randint(150,200)
+    inimigo.goto(x,y)
 
 #tiro
 tiro = Turtle()
@@ -101,25 +112,44 @@ onkey(dispara_tiro,"space")
 
 #principal 
 while True:
+    for inimigo in inimigos:
+            
+        #movendo o inimigo
+        x = inimigo.xcor()
+        x += velocidade_inimigo
+        inimigo.setx(x)
 
-    #movendo o inimigo
-    x = inimigo.xcor()
-    x += velocidade_inimigo
-    inimigo.setx(x)
+        #limitando os movimentos do inimigo 
+        if inimigo.xcor() > 280:
+            y = inimigo.ycor()
+            y -= 40
+            velocidade_inimigo *= -1
+            inimigo.sety(y)
+        
+        if inimigo.xcor() < -280:
+            y = inimigo.ycor()
+            y -= 40
+            velocidade_inimigo *= -1
+            inimigo.sety(y)
 
-    #limitando os movimentos do inimigo 
-    if inimigo.xcor() > 280:
-        y = inimigo.ycor()
-        y -= 40
-        velocidade_inimigo *= -1
-        inimigo.sety(y)
-    
-    if inimigo.xcor() < -280:
-        y = inimigo.ycor()
-        y -= 40
-        velocidade_inimigo *= -1
-        inimigo.sety(y)
-    
+        #verifica se o disparo atingiu o inimigo
+        if bateu(tiro,inimigo):
+            #reseta o tiro
+            tiro.hideturtle()
+            estado_do_tiro = "pronto"
+            tiro.goto(0,-400)
+            #reseta o inimigo
+            x = randint(-200,200)
+            y = randint(150,200)
+            inimigo.goto(x,y)
+                
+        #verifica se o inimigo atingiu o jogador
+        if bateu(jogador,inimigo):
+            jogador.hideturtle()
+            inimigo.hideturtle()
+            print("Perdeu!")
+
+
     #disparo
     if estado_do_tiro == "fogo":
         y = tiro.ycor()
@@ -131,19 +161,5 @@ while True:
         estado_do_tiro = "pronto"
         tiro.hideturtle()
     
-    #verifica se o disparo atingiu o inimigo
-    if bateu(tiro,inimigo):
-        #reseta o tiro
-        tiro.hideturtle()
-        estado_do_tiro = "pronto"
-        tiro.goto(0,-400)
-        #reseta o inimigo
-        inimigo.goto(-200,250)
-    
-    #verifica se o inimigo atingiu o jogador
-    if bateu(jogador,inimigo):
-        jogador.hideturtle()
-        inimigo.hideturtle()
-        print("Perdeu!")
 
 done()
