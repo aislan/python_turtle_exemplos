@@ -110,6 +110,7 @@ def dispara_tiro():
     #declarar a variável estado_do_tiro como global
     global estado_do_tiro
     if estado_do_tiro == "pronto":
+        os.system("play laser.wav&")
         estado_do_tiro = "fogo"
         #movimentando o tiro
         x = jogador.xcor()
@@ -158,6 +159,7 @@ while True:
 
         #verifica se o disparo atingiu o inimigo
         if bateu(tiro,inimigo):
+            os.system("play explosion.wav&")
             #reseta o tiro
             tiro.hideturtle()
             estado_do_tiro = "pronto"
