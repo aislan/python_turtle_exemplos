@@ -1,11 +1,17 @@
 from turtle import *
 from math import *
 from random import *
+import os
 
 #configurando a tela
 tela = Screen()
 tela.bgcolor("black")
 tela.title("Space Invaders")
+tela.bgpic("background.gif")
+
+#registrando shape
+register_shape("invader.gif")
+register_shape("player.gif")
 
 #delimitando as bordas
 borda = Turtle()
@@ -23,7 +29,7 @@ borda.hideturtle()
 #jogador
 jogador = Turtle()
 jogador.color("blue")
-jogador.shape("triangle")
+jogador.shape("player.gif")
 jogador.penup()
 jogador.speed(0)
 jogador.goto(0,-250)
@@ -33,6 +39,7 @@ jogador.setheading(90)
 numero_de_inimigos = 5
 #criando uma lista vazia de inimigos
 inimigos = []
+
 #adicionando os inimigoa para a lista
 for i in range(numero_de_inimigos):
     inimigos.append(Turtle())    
@@ -40,7 +47,7 @@ for i in range(numero_de_inimigos):
 for inimigo in inimigos:
     #inimigos
     inimigo.color("red")
-    inimigo.shape("circle")
+    inimigo.shape("invader.gif")
     inimigo.penup()
     inimigo.speed(0)
     x = randint(-200,200)
