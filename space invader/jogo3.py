@@ -57,6 +57,19 @@ tiro.setheading(90)
 tiro.shapesize(0.5,0.5)
 tiro.hideturtle()
 
+#valor do placar
+score = 0
+
+#placar
+placar = Turtle()
+placar.speed(0)
+placar.color("white")
+placar.penup()
+placar.goto(-290,270)
+texto_do_placar = "Score: {}".format(score)
+placar.write(texto_do_placar,align="left",font=("Arial",14))
+placar.hideturtle()
+
 #velocidade do jogador
 velocidade_jogador = 15
 
@@ -146,6 +159,11 @@ while True:
             x = randint(-200,200)
             y = randint(150,200)
             inimigo.goto(x,y)
+            #atualizando o placar
+            score += 10
+            texto_do_placar = "Score: {}".format(score)
+            placar.clear()
+            placar.write(texto_do_placar,align="left",font=("Arial",14))
                 
         #verifica se o inimigo atingiu o jogador
         if bateu(jogador,inimigo):
