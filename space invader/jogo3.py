@@ -121,16 +121,20 @@ while True:
 
         #limitando os movimentos do inimigo 
         if inimigo.xcor() > 280:
-            y = inimigo.ycor()
-            y -= 40
+            #movendo todos os inimigos pra baixo
+            for i in inimigos:
+                y = i.ycor()
+                y -= 40
+                i.sety(y)
             velocidade_inimigo *= -1
-            inimigo.sety(y)
         
         if inimigo.xcor() < -280:
-            y = inimigo.ycor()
-            y -= 40
+            #movendo todos os inimigos pra baixo
+            for i in inimigos:
+                y = i.ycor()
+                y -= 40
+                i.sety(y)
             velocidade_inimigo *= -1
-            inimigo.sety(y)
 
         #verifica se o disparo atingiu o inimigo
         if bateu(tiro,inimigo):
